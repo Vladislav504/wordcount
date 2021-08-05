@@ -3,15 +3,13 @@ package main
 import (
 	"fmt" 
 	"strings"
-	"bufio"
 	"os"
 )
 
 func main() {
-	reader := bufio.NewReader(os.Stdin)
-	text, _ := reader.ReadString('\n')
+	src:= readInput()
 	wordcounter := make(map[string]int)
-	words := strings.Fields(text)
+	words := strings.Fields(src)
 	for _, word := range words {
 		if _, ok := wordcounter[word]; !ok {
 			wordcounter[word] = 0
@@ -21,4 +19,9 @@ func main() {
 	for key, val := range wordcounter {
 		fmt.Println(key, ":", val)
 	}
+}
+
+func readInput() string {
+	src := os.Args[1]
+	return src
 }
